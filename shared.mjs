@@ -1,7 +1,7 @@
 // Client implementation for the documented common Apps Script bridge protocol.
 export function connectLedger(config,{window=globalThis.window,document=globalThis.document}={}){
  const endpoint=new URL(config.endpoint);
- if(endpoint.protocol!=='https:'||endpoint.hostname!=='script.google.com'||!/^\/macros\/s\/[-a-zA-Z0-9]+\/exec$/.test(endpoint.pathname)||endpoint.search||endpoint.hash||endpoint.username||endpoint.password||endpoint.port||!['aveo','k3','ray'].includes(config.appId))throw Error('확인된 차량 appId와 Apps Script exec 주소가 필요합니다.');
+ if(endpoint.protocol!=='https:'||endpoint.hostname!=='script.google.com'||!/^\/macros\/s\/[_a-zA-Z0-9-]+\/exec$/.test(endpoint.pathname)||endpoint.search||endpoint.hash||endpoint.username||endpoint.password||endpoint.port||!['aveo','k3','ray'].includes(config.appId))throw Error('확인된 차량 appId와 Apps Script exec 주소가 필요합니다.');
  const channel=crypto.randomUUID(),requests=new Map(),waiting=new Set();let target=null,targetOrigin='',closed=false;
  const frame=document.createElement('iframe');frame.hidden=true;frame.title='차량 공유 장부';
  endpoint.searchParams.set('appId',config.appId);endpoint.searchParams.set('parentOrigin',window.location.origin);endpoint.searchParams.set('channel',channel);frame.src=endpoint.href;

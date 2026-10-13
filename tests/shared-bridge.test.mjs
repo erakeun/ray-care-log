@@ -5,7 +5,7 @@ test('documented bridge checks channel/origin/source and pins vehicle and reply 
  let receive,frame,packet,destination;
  const window={location:{origin:'https://erakeun.github.io'},addEventListener:(type,listener)=>receive=listener,removeEventListener(){}};
  const document={createElement:()=>frame={remove(){}},body:{append(){}}};
- const bridge=connectLedger({appId:'k3',endpoint:'https://script.google.com/macros/s/test-bridge/exec'},{window,document});
+ const bridge=connectLedger({appId:'k3',endpoint:'https://script.google.com/macros/s/test_bridge/exec'},{window,document});
  const channel=new URL(frame.src).searchParams.get('channel'),origin='https://a-script.googleusercontent.com';
  const source={postMessage:(data,to)=>{packet=data;destination=to;}};
  receive({origin:'https://example.invalid',source,data:{channel,ready:true}});
