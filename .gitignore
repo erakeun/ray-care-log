@@ -1,0 +1,7 @@
+node_modules/
+.pnpm-store/
+test-results/
+*.log
+vendor/
+public/
+node_modules
