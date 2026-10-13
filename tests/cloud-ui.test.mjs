@@ -1,3 +1,5 @@
+import {sharedConfig} from '../shared-config.mjs';
+sharedConfig.enabled=false; // Local/legacy UI unit tests must never call the live public ledger.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';

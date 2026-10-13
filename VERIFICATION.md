@@ -1,6 +1,6 @@
 # 독립 차량 앱 검증 · 2026-10-13
 
-- npm test: 70/70 통과. 입력/수정/삭제, 거리 역전 거부, JSON 검토·복원, Drive 버전 보존·권한 모형, 서버 격리 모형을 검증했습니다.
+- npm test: 75/75 통과. 입력/수정/삭제, 거리 역전 거부, JSON 검토·복원, Drive 버전 보존·권한 모형, 서버 격리 모형을 검증했습니다.
 - jsdom 320/375/430/1280 너비: 모바일 UI 동작 검증. 실제 Chrome 375×812 모바일 등록·저장·프리셋 화면 캡처 검증 완료. qa/k3-mobile-presets.jpg 및 qa/ray-mobile-ev.jpg 참고.
 - 재로딩 후 거리와 이력 보존, K3/레이 localStorage 키 및 Drive 식별자 분리, 다른 앱 JSON 거부 검증.
 - 미기록은 상태/이력 확인. 타이어 교체는 거리 연체로 확정하지 않음. 냉각수·브레이크액 부족은 원인 점검 안내.
@@ -14,3 +14,5 @@
 로컬 build:cloud 및 stage:pages 성공. 공개 배포 아님. 인증 어댑터 모형 테스트는 70개에 포함되지만 최신 로그인 없는 공유 장부 결정에 따라 연결하지 않음. 실제 Google Sheet/Apps Script/원격 endpoint/OAuth/저장소 생성은 0건.
 
 공개 저장소 https://github.com/erakeun/ray-care-log 및 Pages https://erakeun.github.io/ray-care-log/ 생성·게시 확인. main 소스와 gh-pages 정적 파일 분리. 최초 Pages 자동 빌드 성공. 공유 서버 미연결 상태를 표시하며 실제 공유 시트 동기화 완료를 주장하지 않습니다. 새 OAuth workflow scope 없이 기존 토큰으로 게시했습니다.
+
+공통 로그인 없는 Apps Script 브리지 어댑터 준비. 서버 v1 exact CareCore 스키마 fixture 합성 테스트로 v2 차량 사양·공식 프리셋·최초/반복 정보 왕복 보존 확인. 합성 두 세션·충돌·다른 차량 격리·미확인 저장 재시작/동일 mutation 재시도·과거 로그 보존 통과. enabled=false/endpoint 빈값 유지. 실제 Google exec 주소와 실연결 검증은 대기.

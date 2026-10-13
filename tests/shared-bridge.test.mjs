@@ -1,0 +1,20 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {connectLedger} from '../shared.mjs';
+test('documented bridge checks channel/origin/source and pins vehicle and reply origin',async()=>{
+ let receive,frame,packet,destination;
+ const window={location:{origin:'https://erakeun.github.io'},addEventListener:(type,listener)=>receive=listener,removeEventListener(){}};
+ const document={createElement:()=>frame={remove(){}},body:{append(){}}};
+ const bridge=connectLedger({appId:'k3',endpoint:'https://script.google.com/macros/s/test_bridge/exec'},{window,document});
+ const channel=new URL(frame.src).searchParams.get('channel'),origin='https://a-script.googleusercontent.com';
+ const source={postMessage:(data,to)=>{packet=data;destination=to;}};
+ receive({origin:'https://example.invalid',source,data:{channel,ready:true}});
+ receive({origin,source,data:{channel:'wrong',ready:true}});
+ receive({origin,source,data:{channel,ready:true}});
+ const result=bridge.request({action:'load',appId:'ray'});await new Promise(resolve=>setImmediate(resolve));
+ assert.equal(packet.request.appId,'k3');assert.equal(destination,origin);
+ receive({origin,source:{},data:{channel,id:packet.id,result:{revision:999}}});
+ receive({origin,source,data:{channel,id:packet.id,result:{revision:0,snapshot:null}}});
+ assert.deepEqual(await result,{revision:0,snapshot:null});
+ const failed=bridge.request({action:'load'});await new Promise(resolve=>setImmediate(resolve));receive({origin,source,data:{channel,id:packet.id,error:'quota'}});await assert.rejects(failed,/quota/);bridge.dispose();
+});
