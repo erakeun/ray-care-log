@@ -5,3 +5,4 @@ test-results/
 vendor/
 public/
 node_modules
+tests/fixtures/shared-server-Core.gs
