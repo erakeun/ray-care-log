@@ -12,3 +12,5 @@
 추가 전용 로그: 로컬 대기열과 transport 연결 지점 준비, 실제 원격 규격/endpoint 미수신. 네트워크 전송 없음. 수신 확인 전 완료 주장 안 함. 미연결·실패·미확인 대기열 보존 테스트 통과.
 
 로컬 build:cloud 및 stage:pages 성공. 공개 배포 아님. 인증 어댑터 모형 테스트는 70개에 포함되지만 최신 로그인 없는 공유 장부 결정에 따라 연결하지 않음. 실제 Google Sheet/Apps Script/원격 endpoint/OAuth/저장소 생성은 0건.
+
+공개 저장소 https://github.com/erakeun/ray-care-log 및 Pages https://erakeun.github.io/ray-care-log/ 생성·게시 확인. main 소스와 gh-pages 정적 파일 분리. 최초 Pages 자동 빌드 성공. 공유 서버 미연결 상태를 표시하며 실제 공유 시트 동기화 완료를 주장하지 않습니다. 새 OAuth workflow scope 없이 기존 토큰으로 게시했습니다.
